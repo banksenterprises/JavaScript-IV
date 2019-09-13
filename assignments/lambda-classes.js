@@ -1,49 +1,73 @@
 // CODE here for your Lambda Classes ok
 
-
-Person 
-
-1. Name
-2. Age
-3. Location
-4. Speak()
-    return `Hello my name is Fred, I am from Miami.`
-
 // Person Class
-class GameObject {
-    constructor (gameAttributes) {}
-        destroy() {
-            return `${this.name} was removed from the game.`;
+class Person {
+    constructor (personAttributes) {
+        this.name = personAttributes.name;
+        this.age = personAttributes.age;
+        this.location = personAttributes.location;
+    }
+        speak() {
+            return `Hello, my name is ${this.name}. I am from ${this.location}.`;
     }
 }
 
-Instructor
-same as Person
-1. specialty
-2. favLanguage
-3. catchPhrase
-4. demo(subject)
-    return `Today we are learning about subject.`
-5. grade(student, subject)
-    return `name receives a perfect score on subject.`
+class Instructor extends Person {
+    constructor (instructorAttributes) {
+        super(instructorAttributes);
+        this.specialty = instructorAttributes.specialty;
+        this.favLanguage = instructorAttributes.favLanguage;
+        this.catchPhrase = instructorAttributes.catchPhrase;
+    }
+        demo() {
+            return `Today we are learning about ${this.specialty}.`;
+    }
+        grade() {
+            return `${this.name} receives a perfect score on ${this.specialty}.`;
+}
+}
 
-Student 
-same as Person
-1. previousBackground
-2. className
-3. favSubjects
-4. listsSubjects
-5. PRAsignment()
-    return `name has submitted a PR for subject.`
-6. sprintChallenge()
-    return `name has begun sprint challenge on subject.`
+class Student extends Person {
+    constructor (studentAttributes) {
+        super(studentAttributes);
+        this.previousBackground = studentAttributes.previousBackground;
+        this.className = studentAttributes.className;
+        this.favSubjects = studentAttributes.favSubjects;
+        this.listsSubjects = studentAttributes.listsSubjects;
+    }
+        PRAsignment() {
+            return `${this.name} has submitted a PR for ${this.specialty}.`;
+        }
+        sprintChallenge() {
+            return `${this.name} has begun a Sprint Challenge on ${this.specialty}.`;
+}
+}
 
-Project Manager 
-same as Instructor 
-1. gradClassName
-2. favInstructor
-3. standUp()
-    return `name announces to channel, @channel standy times!`
-4. debugsCode()
-    return `name debugs student's code on subject.`
 
+class PM extends Instructor {
+    constructor (pmAttributes) {
+        super(pmAttributes);
+        this.gradClassName = pmAttributes.gradClassName;
+        this.favInstructor = pmAttributes.favInstructor;
+    }
+        standUp() {
+            return `${this.name} announces to channel, @channel standy times!`;
+        }
+        debugsCode() {
+            return `${this.name} debugs student's code on ${this.specialty}.`;
+}
+}
+
+const carlos = new Student({
+    name: "Carlos",
+    age: 23,
+    location: "Miami",
+    previousBackground: "Engineer",
+    className: "Javascript IV",
+    favSubjects: "HTML & CSS",
+    listsSubjects: "React, Javascript",
+    
+
+})
+
+console.log(carlos.sprintChallenge());
